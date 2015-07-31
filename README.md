@@ -2,7 +2,7 @@ System - Sound Switch
 ---------------------------
 
 This is a small Firefox OS addon that adds a sound switch to the
-pull-down utilities tray.
+pull-down utilities tray. Only media/content volume will be affected.
 
 You can [use the WebIDE to install it onto your device][webide], or someday you
 might find it in the Hackerplace!
