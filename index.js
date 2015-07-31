@@ -47,7 +47,6 @@
 
     var switchEl = $$('quick-sound-switch');
     function sync_sound_state(sound_state) {
-      console.info(sound_state);
       if (sound_state) {
         switchEl.setAttribute('data-icon', 'sound-max');
         switchEl.setAttribute('data-enabled', 'true');
@@ -89,7 +88,6 @@
         setting2.onsuccess = function() {
           var contentVol = setting.result['audio.volume.content'];
           var notificationVol = setting2.result['audio.volume.notification'];
-          console.info(contentVol, notificationVol);
           if (0 == contentVol && 0 == notificationVol) {
             _lock.set({
               'audio.volume.content': oldContentVol,
@@ -120,7 +118,6 @@
 
   navigator.mozApps.mgmt.onenabledstatechange = function(event) {
     var app = event.application;
-    console.log('onenabledstatechange', app.manifestURL);
     if (app.manifestURL.indexOf(MANIFEST_URL) > 0 && !app.enabled) {
       uninitialize();
     }
