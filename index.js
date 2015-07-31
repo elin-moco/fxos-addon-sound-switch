@@ -1,4 +1,5 @@
 (function () {
+  var MANIFEST_URL = '/fxos-addon-sound-switch/manifest.webapp';
 
   // If injecting into an app that was already running at the time
   // the app was enabled, simply initialize it.
@@ -111,10 +112,17 @@
 
   }
 
+  function uninitialize() {
+    var $$ = document.getElementById.bind(document);
+    var existingContainerEl = $$('quick-sound');
+    existingContainerEl.parentNode.removeChild(existingContainerEl);
+  }
+
   navigator.mozApps.mgmt.onenabledstatechange = function(event) {
     var app = event.application;
-    if (!app.enabled) {
-      existingContainerEl.parentNode.removeChild(existingContainerEl);
+    console.log('onenabledstatechange', app.manifestURL);
+    if (app.manifestURL.indexOf(MANIFEST_URL) > 0 && !app.enabled) {
+      uninitialize();
     }
   };
 }());
