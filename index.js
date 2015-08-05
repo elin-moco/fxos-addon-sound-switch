@@ -108,6 +108,14 @@
       };
     });
 
+    navigator.mozApps.mgmt.getAll().then(function(apps) {
+    apps.forEach(function(app) {
+        if (app.manifestURL.indexOf(MANIFEST_URL) > 0) {
+          var origin = app.origin;
+          console.log('yaaaay this is my origin', origin);
+        }
+      });
+    });
   }
 
   function uninitialize() {
@@ -118,8 +126,11 @@
 
   navigator.mozApps.mgmt.onenabledstatechange = function(event) {
     var app = event.application;
+    console.log('manifestURL', app.manifestURL);
+    console.log('origin', app.origin);
     if (app.manifestURL.indexOf(MANIFEST_URL) > 0 && !app.enabled) {
       uninitialize();
     }
   };
 }());
+
