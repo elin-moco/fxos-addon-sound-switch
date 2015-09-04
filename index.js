@@ -1,5 +1,6 @@
 (function () {
-  var MANIFEST_URL = '/fxos-addon-sound-switch/manifest.webapp';
+  //var MANIFEST_URL = 'app://ce999d25-aa2d-ab4f-b00a-4f0deebc64f8/manifest.webapp';
+  var MANIFEST_URL = 'https://elin-moco.github.io/fxos-addon-sound-switch/manifest.webapp';
 
   // If injecting into an app that was already running at the time
   // the app was enabled, simply initialize it.
@@ -107,15 +108,6 @@
         };
       };
     });
-
-    navigator.mozApps.mgmt.getAll().then(function(apps) {
-    apps.forEach(function(app) {
-        if (app.manifestURL.indexOf(MANIFEST_URL) > 0) {
-          var origin = app.origin;
-          console.log('yaaaay this is my origin', origin);
-        }
-      });
-    });
   }
 
   function uninitialize() {
@@ -126,9 +118,7 @@
 
   navigator.mozApps.mgmt.onenabledstatechange = function(event) {
     var app = event.application;
-    console.log('manifestURL', app.manifestURL);
-    console.log('origin', app.origin);
-    if (app.manifestURL.indexOf(MANIFEST_URL) > 0 && !app.enabled) {
+    if (app.manifestURL === MANIFEST_URL && !app.enabled) {
       uninitialize();
     }
   };

@@ -1,7 +1,6 @@
 {
   "name": "System - Sound Switch",
   "description": "Toggle sounds on and off in utilities tray.",
-  "origin": "app://fxos-addon-sound-switch/manifest.webapp",
   "developer": {
     "name": "Eddie Lin",
     "url": "http://yshl.in"
