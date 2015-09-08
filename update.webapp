@@ -2,8 +2,7 @@
   "name": "System - Sound Switch",
   "description": "Toggle sounds on and off in utilities tray.",
   "developer": {
-    "name": "Eddie Lin",
-    "url": "http://yshl.in"
+    "name": "Eddie Lin"
   },
   "package_path": "extension.zip"
 }
