@@ -113,14 +113,18 @@
   function uninitialize() {
     var $$ = document.getElementById.bind(document);
     var existingContainerEl = $$('quick-sound');
-    existingContainerEl.parentNode.removeChild(existingContainerEl);
+    if (existingContainerEl) {
+      existingContainerEl.parentNode.removeChild(existingContainerEl);
+    }
+    navigator.mozApps.mgmt.removeEventListener('enabledstatechange', onEnabledStateChange);
   }
 
-  navigator.mozApps.mgmt.onenabledstatechange = function(event) {
+  function onEnabledStateChange(event) {
     var app = event.application;
-    if (app.manifestURL === MANIFEST_URL && !app.enabled) {
+    if (app.manifest.name === 'System - Sound Switch' && !app.enabled) {
       uninitialize();
     }
-  };
+  }
+  navigator.mozApps.mgmt.addEventListener('enabledstatechange', onEnabledStateChange);
 }());
 
